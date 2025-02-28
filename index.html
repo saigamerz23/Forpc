@@ -1,0 +1,152 @@
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8"> 
+  <title>JW Player</title> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <script src="//content.jwplatform.com/libraries/SAHhwvZq.js"></script> 
+  <style> 
+    body { 
+      margin: 0; 
+      background-color: black;
+      overflow: hidden;
+    } 
+    .jwplayer { 
+      position: absolute !important; 
+    } 
+    .jwplayer.jw-flag-aspect-mode { 
+      min-height: 100%; 
+      max-height: 100%; 
+    } 
+
+    /* Premium Square Pop-Up */
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 300px;
+      height: 200px;
+      background: linear-gradient(135deg, #222, #111);
+      border: 3px solid gold;
+      border-radius: 10px;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      color: white;
+      font-size: 18px;
+      box-shadow: 0 0 20px gold;
+      z-index: 999;
+      opacity: 0;
+      transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+    }
+
+    /* Show Pop-Up Animation */
+    .popup.show {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+      animation: sparkle 1s ease-out;
+    }
+
+    /* Glass Break Close Animation */
+    .popup.hide {
+      animation: glassBreak 0.6s ease-in-out forwards;
+    }
+
+    @keyframes sparkle {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 0 30px gold; }
+      100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 20px gold; }
+    }
+
+    @keyframes glassBreak {
+      0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+      30% { transform: translate(-50%, -50%) scale(1.1) rotate(-2deg); }
+      50% { transform: translate(-50%, -50%) scale(0.8) rotate(3deg); }
+      100% { opacity: 0; transform: translate(-50%, -50%) scale(1.5) rotate(-5deg); }
+    }
+
+    /* Button Container */
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+    }
+
+    /* Join Now Button */
+    .join-btn {
+      flex: 1;
+      padding: 12px;
+      margin-right: 10px;
+      background: linear-gradient(135deg, #FFD700, #FFAA00);
+      color: black;
+      font-weight: bold;
+      border-radius: 8px;
+      font-size: 16px;
+      text-decoration: none;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+      transition: 0.3s;
+    }
+
+    .join-btn:hover {
+      box-shadow: 0 0 25px rgba(255, 215, 0, 1);
+      transform: scale(1.05);
+    }
+
+    /* Already Joined Button */
+    .joined-btn {
+      flex: 1;
+      padding: 12px;
+      background: linear-gradient(135deg, #8B0000, #FF0000);
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      font-size: 16px;
+      text-decoration: none;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+      transition: 0.3s;
+    }
+
+    .joined-btn:hover {
+      box-shadow: 0 0 25px rgba(255, 0, 0, 1);
+      transform: scale(1.05);
+    }
+  </style> 
+</head> 
+<body> 
+  <div id="jwplayerDiv"></div> 
+
+  <!-- Premium Pop-Up -->
+  <div id="premiumPopup" class="popup">
+    <p style="margin-top: 20px;">✨ <b>Join our Premium Telegram Channel</b> ✨</p>
+    <div class="button-container">
+      <a href="https://t.me/+DdU50i9b_E9jMDc1" target="_blank" class="join-btn">🔥 Join Now 🔥</a>
+      <a href="#" class="joined-btn" onclick="closePopup()">✔️ Already Joined</a>
+    </div>
+  </div>
+
+  <script> 
+    jwplayer("jwplayerDiv").setup({ 
+      file: "https://jcevents.jiocinema.com/bpk-tv/JC_Sports18_1HD/JCHLS/hdntl=exp=1740819336~acl=%2f*~id=65763e52500eecca760c9c2627121e1f~data=hdntl~hmac=63ea1b8bcd5623cbd2ed62d3c878d5a35d25c4bcfa2b6df1ae6bb483a499d7b7/index.m3u8", 
+      position: 'bottom', 
+      autostart: true, 
+      stretching: "uniform", 
+      width: "100%", 
+      type: "dash" 
+    });
+
+    // Show pop-up after 3 seconds
+    setTimeout(() => {
+      document.getElementById("premiumPopup").classList.add("show");
+    }, 3000);
+
+    // Close pop-up with animation
+    function closePopup() {
+      const popup = document.getElementById("premiumPopup");
+      popup.classList.add("hide");
+      setTimeout(() => popup.style.display = "none", 600);
+    }
+  </script> 
+</body> 
+</html>
